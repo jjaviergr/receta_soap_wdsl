@@ -13,7 +13,7 @@ class BD_proxy
 {
    /**
     * 
-    * @param int $codigo
+    * @param integer $codigo
     * @return string
     */
    public function obtieneNombreReceta($codigo)

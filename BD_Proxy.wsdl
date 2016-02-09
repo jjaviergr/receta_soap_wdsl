@@ -1,2 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap-env="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://localhost/soap" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://localhost/soap"><wsdl:types><xsd:schema targetNamespace="http://localhost/soap"/></wsdl:types><wsdl:message name="obtieneNombreRecetaRequest"><wsdl:part name="codigo" type="xsd:int"/></wsdl:message><wsdl:message name="obtieneNombreRecetaResponse"><wsdl:part name="obtieneNombreRecetaReturn" type="xsd:string"/></wsdl:message><wsdl:portType name="BD_proxyPortType"><wsdl:operation name="obtieneNombreReceta"><wsdl:documentation/><wsdl:input message="tns:obtieneNombreRecetaRequest"/><wsdl:output message="tns:obtieneNombreRecetaResponse"/></wsdl:operation></wsdl:portType><wsdl:binding name="BD_proxyBinding" type="tns:BD_proxyPortType"><soap-env:binding xmlns="http://schemas.xmlsoap.org/wsdl/soap/" style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/><wsdl:operation name="obtieneNombreReceta"><soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://localhost/soap/servicio_con_wdsl.php?method=obtieneNombreReceta" style="rpc"/><wsdl:input><soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></wsdl:input><wsdl:output><soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></wsdl:output></wsdl:operation></wsdl:binding><wsdl:service name="BD_proxy"><wsdl:documentation/><wsdl:port name="BD_proxyPort" binding="tns:BD_proxyBinding"><soap-env:address location="http://localhost/soap/servicio_con_wdsl.php"/></wsdl:port></wsdl:service></wsdl:definitions>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap-env="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://localhost/receta_soap_wdsl" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://localhost/receta_soap_wdsl">
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://localhost/receta_soap_wdsl"/>
+    </wsdl:types>
+    <wsdl:message name="obtieneNombreRecetaRequest">
+        <wsdl:part name="codigo" type="xsd:int"/>
+    </wsdl:message>
+    <wsdl:message name="obtieneNombreRecetaResponse">
+        <wsdl:part name="obtieneNombreRecetaReturn" type="xsd:string"/>
+    </wsdl:message>
+    <wsdl:portType name="BD_proxyPortType">
+        <wsdl:operation name="obtieneNombreReceta">
+            <wsdl:documentation/>
+            <wsdl:input message="tns:obtieneNombreRecetaRequest"/>
+            <wsdl:output message="tns:obtieneNombreRecetaResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="BD_proxyBinding" type="tns:BD_proxyPortType">
+        <soap-env:binding xmlns="http://schemas.xmlsoap.org/wsdl/soap/" style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="obtieneNombreReceta">
+            <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://localhost/receta_soap_wdsl/servicio_con_wdsl.php?method=obtieneNombreReceta" style="rpc"/>
+            <wsdl:input>
+                <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="BD_proxy">
+        <wsdl:documentation/>
+        <wsdl:port name="BD_proxyPort" binding="tns:BD_proxyBinding">
+            <soap-env:address location="http://localhost/receta_soap_wdsl/servicio_con_wdsl.php"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

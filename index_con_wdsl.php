@@ -6,26 +6,37 @@
     </head>
     <body>
         <?php
+//        require_once ('BD.php');
         require_once('BD_Proxy.php');
         require_once('recetas.php');
         require_once('ingredientes.php');
 
-        $a=new BD_proxy();
+        $a = new BD_proxy();
         echo $a->obtieneNombreReceta(1).";;;;;";
 
+
+        $uri = "http://localhost/receta_soap_wdsl";
+
+
+//         $cliente = new SoapClient(null, array('location' => $url, 'uri' => $uri));
+        try {
+
         
-       $uri = "http://localhost/receta_soap_wdsl";
-    
+        $cliente = new SoapClient("$uri/BD_Proxy.wsdl");
+        //print_r($cliente->__getFunctions());
 
-        // $cliente = new SoapClient(null, array('location' => $url, 'uri' => $uri));
-       $cliente = new SoapClient("$uri/BD_Proxy.wsdl",array('codigo' => "1"));
-       //print_r($cliente->__getFunctions());
-       echo $cliente->obtieneNombreReceta(1); 
+//        $cliente->__soapCall('obtieneNombreReceta', array('codigo' => 1));
+
+//       $receta= $cliente->obtieneNombreReceta(1); 
 //       echo ("receta es : " + $receta); // funciona correctamente.
-       
-//         echo $cliente;
-
-     
+//     $cliente->__soapCall("obtieneNombreReceta",array(1));
+        echo $cliente->obtieneNombreReceta(1); 
+        
+        
+        }catch (Exception $ex) {
+              echo $ex->getMessage();
+              print($cliente->__getLastResponse());
+        }
         ?>
     </body>
 </html>
