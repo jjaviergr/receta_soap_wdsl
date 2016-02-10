@@ -36,6 +36,7 @@
         print "<br>";
         echo $cliente->obtener_presentacion_receta(1);
         print "<br>";
+        
         print_r($cliente->obtener_array_ingredientes_receta(1));
         
         

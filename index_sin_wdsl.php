@@ -30,9 +30,14 @@
         print "<br>";
         echo $cliente->obtener_presentacion_receta(1);
         print "<br>";
-        print_r($cliente->obtener_array_ingredientes_receta(1));
-        
-        
+        //print_r($cliente->obtener_array_ingredientes_receta(1));
+        $v=$cliente->obtener_array_ingredientes_receta(1);
+        print_r($v);
+//        for ($i=0;$i<5;$i++)
+//        {
+//            print $v[$i]."<br>";
+//        }
+//        
         }catch (Exception $ex) {
               echo $ex->getMessage();
               print($cliente->__getLastResponse());

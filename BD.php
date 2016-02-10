@@ -37,9 +37,8 @@ class BD {
         $resultado = self::ejecutaConsulta($sql);
         $nombre = null;
 
-        if (isset($resultado)) 
-        {
-            $row = $resultado->fetch();            
+        if (isset($resultado)) {
+            $row = $resultado->fetch();
             //print_r($row);
             $nombre = $row['nombre'];
         }
@@ -93,13 +92,49 @@ class BD {
         $sql = "SELECT  * FROM ingredientes";
         $sql .= " WHERE cod_rec='" . $cod_rec . "'";
         $resultado = self::ejecutaConsulta($sql);
-        $nombre = null;
-
-        if (isset($resultado)) {
-            $row = $resultado->fetch();
-            $nombre = new Ingredientes($row);          
-        }
+        $nombre = array();
+//        ini_set('memory_limit', '-1');
+        $row=$resultado->fetch();
+        while ($row != null) { 
+            $nombre[] = new Ingredientes($row);
+                $row = $resultado->fetch();
+                
+            }        
         return $nombre;
     }
 
+    /**
+     * 
+     * @return \Ingredientes
+     */
+   public static function obtener_ingredientes()
+   {
+        $sql = "SELECT  * FROM ingredientes";
+        $resultado = self::ejecutaConsulta($sql);
+        $nombre = array();
+        $row=$resultado->fetch();
+        while ($row != null) { 
+            $nombre[] = new Ingredientes($row);
+                $row = $resultado->fetch();
+                
+            }        
+        return $nombre;
+   }
+   /**
+    * 
+    * @return \Recetas
+    */
+   public static function obtener_recetas()
+   {
+        $sql = "SELECT  * FROM recetas";
+        $resultado = self::ejecutaConsulta($sql);
+        $nombre = array();
+        $row=$resultado->fetch();
+        while ($row != null) { 
+            $nombre[] = new Recetas($row);
+                $row = $resultado->fetch();
+                
+            }        
+        return $nombre;
+   }
 }

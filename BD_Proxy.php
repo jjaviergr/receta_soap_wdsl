@@ -50,16 +50,29 @@ class BD_proxy
    {
        //$v=new Ingredientes(null);
        $v=BD::obtener_ingredientes_receta($cod_rec);
-       print_r($v);
-       $a=Array(5);
-       $a[0]=$v->getCantidad();
-       $a[1]=$v->getCod_ing();
-       $a[2]=$v->getCod_rec();
-       $a[3]=$v->getNombre();
-       $a[4]=$v->getUnidad();
+       $cad="";
+       $a="";
+     
+       for ($i=0;$i<count($v);$i++)
+       {
+          $cad=$cad.$v[$i]->getCantidad().";";
+          $cad=$cad.$v[$i]->getCod_ing().";";
+          $cad=$cad.$v[$i]->getCod_rec().";";
+          $cad=$cad.$v[$i]->getNombre().";";
+          $cad=$cad.$v[$i]->getUnidad();          
+          $a[$i]=$cad;
+        }
        
        return ($a);
    }
+   /**
+    * 
+    */
+   public function obtener_ingredientes(){}
+   /**
+    * 
+    */
+   public function obtener_recetas(){}
    
 //   public function obtener_ingredientes_receta($cod_rec)
 //   {
