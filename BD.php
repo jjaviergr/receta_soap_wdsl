@@ -19,10 +19,10 @@ class BD {
     protected static function ejecutaConsulta($sql) {
         $opc = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
         $dsn = "mysql:host=localhost;dbname=recetas";
-        //$usuario = 'dwes';
-        //$contrasena = 'abc123.';
-        $usuario = "root";
-        $contrasena = "";
+        $usuario = 'dwes';
+        $contrasena = 'abc123.';
+        //$usuario = "root";
+        //$contrasena = "";
 
         $dwes = new PDO($dsn, $usuario, $contrasena, $opc);
         $resultado = null;
@@ -48,14 +48,15 @@ class BD {
     }
 
     public static function obtener_tipo_receta($cod_rec) {
-        $sql = "SELECT  * FROM recetas";
+        $sql = "SELECT  tipo FROM recetas";
         $sql .= " WHERE cod_rec='" . $cod_rec . "'";
         $resultado = self::ejecutaConsulta($sql);
         $nombre = null;
 
         if (isset($resultado)) {
             $row = $resultado->fetch();
-            $nombre = new Recetas($row);
+            //$nombre = new Recetas($row);
+            $nombre = $row['tipo'];
         }
         return $nombre;
     }
@@ -68,7 +69,8 @@ class BD {
 
         if (isset($resultado)) {
             $row = $resultado->fetch();
-            $nombre = new Recetas($row);
+            //$nombre = new Recetas($row);
+            $nombre = $row['preparacion'];
         }
         return $nombre;
     }
@@ -81,7 +83,8 @@ class BD {
 
         if (isset($resultado)) {
             $row = $resultado->fetch();
-            $nombre = new Recetas($row);
+            //$nombre = new Recetas($row);
+            $nombre = $row['presentacion'];
         }
         return $nombre;
     }
@@ -94,7 +97,7 @@ class BD {
 
         if (isset($resultado)) {
             $row = $resultado->fetch();
-            $nombre = new Ingredientes($row);
+            $nombre = new Ingredientes($row);          
         }
         return $nombre;
     }

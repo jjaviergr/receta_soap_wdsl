@@ -16,20 +16,14 @@
 
 
         $uri = "http://localhost/receta_soap_wdsl";
+        $url="$uri/servicio_sin_wdsl.php";
 
-
-//         $cliente = new SoapClient(null, array('location' => $url, 'uri' => $uri));
+//        
         try {
 
-        
-        $cliente = new SoapClient("$uri/BD_Proxy.wsdl");
-        //print_r($cliente->__getFunctions());
+        $cliente = new SoapClient(null, array('location' => $url, 'uri' => $uri));
+        //$cliente = new SoapClient("$uri/BD_Proxy.wsdl");
 
-//        $cliente->__soapCall('obtieneNombreReceta', array('codigo' => 1));
-
-//       $receta= $cliente->obtieneNombreReceta(1); 
-//       echo ("receta es : " + $receta); // funciona correctamente.
-//     $cliente->__soapCall("obtieneNombreReceta",array(1));
         echo $cliente->obtieneNombreReceta(1); 
         print "<br>";
         echo $cliente->obtener_preparacion_receta(1);

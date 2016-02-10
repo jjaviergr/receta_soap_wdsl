@@ -21,7 +21,7 @@ class Ingredientes
     private $nombre;
     private $unidad;
     
-    function __construct($row) {
+    public function __construct($row) {
         $this->cantidad = $row['cantidad'];
         $this->cod_ing = $row['cod_ing'];
         $this->cod_rec = $row['cod_rec'];
@@ -29,43 +29,43 @@ class Ingredientes
         $this->unidad = $row['unidad'];
     }
 
-    function getCantidad() {
+    public function getCantidad() {
         return $this->cantidad;
     }
 
-    function getCod_ing() {
+    public function getCod_ing() {
         return $this->cod_ing;
     }
 
-    function getCod_rec() {
+    public function getCod_rec() {
         return $this->cod_rec;
     }
 
-    function getNombre() {
+    public function getNombre() {
         return $this->nombre;
     }
 
-    function getUnidad() {
+    public function getUnidad() {
         return $this->unidad;
     }
 
-    function setCantidad($cantidad) {
+    public function setCantidad($cantidad) {
         $this->cantidad = $cantidad;
     }
 
-    function setCod_ing($cod_ing) {
+    public function setCod_ing($cod_ing) {
         $this->cod_ing = $cod_ing;
     }
 
-    function setCod_rec($cod_rec) {
+    public function setCod_rec($cod_rec) {
         $this->cod_rec = $cod_rec;
     }
 
-    function setNombre($nombre) {
+    public function setNombre($nombre) {
         $this->nombre = $nombre;
     }
 
-    function setUnidad($unidad) {
+    public function setUnidad($unidad) {
         $this->unidad = $unidad;
     }
 
