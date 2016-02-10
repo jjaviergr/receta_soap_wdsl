@@ -123,7 +123,7 @@ class BD {
     */
    public static function obtener_recetas()
    {
-        $v=self::obtener_ingredientes();
+       
         $sql = "SELECT  * FROM recetas";
         $resultado = self::ejecutaConsulta($sql);
         $nombre = array();
@@ -131,6 +131,7 @@ class BD {
         while ($row != null) 
         { 
             $aux=new Recetas($row);
+            $v=self::obtener_ingredientes_receta($row['cod_rec']);
             $aux->setIngredientes($v);
             $nombre[] = $aux;
             

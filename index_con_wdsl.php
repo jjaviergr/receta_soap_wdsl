@@ -55,6 +55,12 @@
            // print "<br><br><br><br>";
             print_r($cliente->obtener_recetas());
              print "<br><br><br><br>";
+            $v=$cliente->obtener_recetas();
+            print "<br><br><br><br>";
+            print "numero de recetas :".count($v);
+            $v1=$v[0]->getIngredientes();
+            print_r($v1->getNombre());
+            
         }
         catch (Exception $ex) 
         {

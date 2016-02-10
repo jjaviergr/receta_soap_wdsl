@@ -28,6 +28,7 @@ class Recetas {
         $this->tipo = $row['presentacion'];
         $this->ingredientes=$ing;
     }
+    
     function getIngredientes() {
         return $this->ingredientes;
     }
