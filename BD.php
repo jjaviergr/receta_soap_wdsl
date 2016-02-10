@@ -103,10 +103,7 @@ class BD {
         return $nombre;
     }
 
-    /**
-     * 
-     * @return \Ingredientes
-     */
+    
    public static function obtener_ingredientes()
    {
         $sql = "SELECT  * FROM ingredientes";
@@ -126,15 +123,20 @@ class BD {
     */
    public static function obtener_recetas()
    {
+        $v=self::obtener_ingredientes();
         $sql = "SELECT  * FROM recetas";
         $resultado = self::ejecutaConsulta($sql);
         $nombre = array();
         $row=$resultado->fetch();
-        while ($row != null) { 
-            $nombre[] = new Recetas($row);
+        while ($row != null) 
+        { 
+            $aux=new Recetas($row);
+            $aux->setIngredientes($v);
+            $nombre[] = $aux;
+            
                 $row = $resultado->fetch();
                 
-            }        
+         }        
         return $nombre;
    }
 }

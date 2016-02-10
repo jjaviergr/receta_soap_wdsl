@@ -65,14 +65,11 @@ class BD_proxy
        
        return ($a);
    }
-   /**
-    * 
-    * @return Ingredientes[]
-    */
-   public function obtener_ingredientes()
-   {
-       return(BD::obtener_ingredientes());
-   }
+   
+//   public function obtener_ingredientes()
+//   {
+//       return(BD::obtener_ingredientes());
+//   }
    
    /**
     * 

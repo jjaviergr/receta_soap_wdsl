@@ -18,17 +18,25 @@ class Recetas {
     private $preparacion;
     private $presentacion;
     private $tipo;
-
+    private $ingredientes;
     
-    function __construct($row) {
+    function __construct($row,$ing) {
         $this->codigo_rec = $row['cod_rec'];
         $this->nombre = $row['nombre'];
         $this->preparacion = $row['tipo'];
         $this->presentacion = $row['preparacion'];
         $this->tipo = $row['presentacion'];
+        $this->ingredientes=$ing;
+    }
+    function getIngredientes() {
+        return $this->ingredientes;
     }
 
-    function getCodigo_rec() {
+    function setIngredientes($ingredientes) {
+        $this->ingredientes = $ingredientes;
+    }
+
+        function getCodigo_rec() {
         return $this->codigo_rec;
     }
 

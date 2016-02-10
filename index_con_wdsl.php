@@ -7,12 +7,12 @@
     <body>
         <?php
 //        require_once ('BD.php');
-        require_once('BD_Proxy.php');
-        require_once('recetas.php');
-        require_once('ingredientes.php');
+       // require_once('BD_Proxy.php');
+       // require_once('recetas.php');
+       // require_once('ingredientes.php');
 
-        $a = new BD_proxy();
-        echo $a->obtieneNombreReceta(1).";;;;;";
+ //       $a = new BD_proxy();
+ //       echo $a->obtieneNombreReceta(1).";;;;;";
 
 
         $uri = "http://localhost/receta_soap_wdsl";
@@ -51,8 +51,8 @@
         
         try
         {
-            print_r($cliente->obtener_ingredientes());
-            print "<br><br><br><br>";
+           // print_r($cliente->obtener_ingredientes());
+           // print "<br><br><br><br>";
             print_r($cliente->obtener_recetas());
              print "<br><br><br><br>";
         }

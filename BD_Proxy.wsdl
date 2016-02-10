@@ -9,9 +9,6 @@
                     </xsd:restriction>
                 </xsd:complexContent>
             </xsd:complexType>
-            <xsd:complexType name="Ingredientes">
-                <xsd:all/>
-            </xsd:complexType>
             <xsd:complexType name="Recetas">
                 <xsd:all/>
             </xsd:complexType>
@@ -41,10 +38,6 @@
     <wsdl:message name="obtener_array_ingredientes_recetaResponse">
         <wsdl:part name="obtener_array_ingredientes_recetaReturn" type="tns:stringArray"/>
     </wsdl:message>
-    <wsdl:message name="obtener_ingredientesRequest"/>
-    <wsdl:message name="obtener_ingredientesResponse">
-        <wsdl:part name="obtener_ingredientesReturn" type="tns:IngredientesArray"/>
-    </wsdl:message>
     <wsdl:message name="obtener_recetasRequest"/>
     <wsdl:message name="obtener_recetasResponse">
         <wsdl:part name="obtener_recetasReturn" type="tns:RecetasArray"/>
@@ -69,11 +62,6 @@
             <wsdl:documentation/>
             <wsdl:input message="tns:obtener_array_ingredientes_recetaRequest"/>
             <wsdl:output message="tns:obtener_array_ingredientes_recetaResponse"/>
-        </wsdl:operation>
-        <wsdl:operation name="obtener_ingredientes">
-            <wsdl:documentation/>
-            <wsdl:input message="tns:obtener_ingredientesRequest"/>
-            <wsdl:output message="tns:obtener_ingredientesResponse"/>
         </wsdl:operation>
         <wsdl:operation name="obtener_recetas">
             <wsdl:documentation/>
@@ -112,15 +100,6 @@
         </wsdl:operation>
         <wsdl:operation name="obtener_array_ingredientes_receta">
             <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://localhost/receta_soap_wdsl/servicio_con_wdsl.php?method=obtener_array_ingredientes_receta" style="rpc"/>
-            <wsdl:input>
-                <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-            </wsdl:input>
-            <wsdl:output>
-                <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-            </wsdl:output>
-        </wsdl:operation>
-        <wsdl:operation name="obtener_ingredientes">
-            <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://localhost/receta_soap_wdsl/servicio_con_wdsl.php?method=obtener_ingredientes" style="rpc"/>
             <wsdl:input>
                 <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
             </wsdl:input>
