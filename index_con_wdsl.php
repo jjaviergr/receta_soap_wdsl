@@ -23,6 +23,10 @@
 
         
         $cliente = new SoapClient("$uri/BD_Proxy.wsdl");
+        print "<br><br><br><br>";print "<br><br><br><br>";print "<br><br><br><br>";print "<br><br><br><br>";
+        print_r($cliente->__getTypes());
+        print "<br><br><br><br>";print "<br><br><br><br>";print "<br><br><br><br>";
+        print_r($cliente->__getFunctions());
         //print_r($cliente->__getFunctions());
 
 //        $cliente->__soapCall('obtieneNombreReceta', array('codigo' => 1));

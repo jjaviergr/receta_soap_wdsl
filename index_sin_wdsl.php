@@ -22,6 +22,8 @@
         try {
 
         $cliente = new SoapClient(null, array('location' => $url, 'uri' => $uri));
+        print_r($cliente->__getTypes());
+        print_r($cliente->__getFunctions());
         //$cliente = new SoapClient("$uri/BD_Proxy.wsdl");
 
         echo $cliente->obtieneNombreReceta(1); 
