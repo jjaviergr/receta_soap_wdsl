@@ -31,16 +31,29 @@
 //       echo ("receta es : " + $receta); // funciona correctamente.
 //     $cliente->__soapCall("obtieneNombreReceta",array(1));
         echo $cliente->obtieneNombreReceta(1); 
-        print "<br>";
+        print "<br><br><br><br>";
         echo $cliente->obtener_preparacion_receta(1);
-        print "<br>";
+        print"<br><br><br><br>";
         echo $cliente->obtener_presentacion_receta(1);
-        print "<br>";
+        print "<br><br><br><br>";
         
         print_r($cliente->obtener_array_ingredientes_receta(1));
-        
+        print "<br><br><br><br>";
         
         }catch (Exception $ex) {
+              echo $ex->getMessage();
+              print($cliente->__getLastResponse());
+        }
+        
+        try
+        {
+            print_r($cliente->obtener_ingredientes());
+            print "<br><br><br><br>";
+            print_r($cliente->obtener_recetas());
+             print "<br><br><br><br>";
+        }
+        catch (Exception $ex) 
+        {
               echo $ex->getMessage();
               print($cliente->__getLastResponse());
         }

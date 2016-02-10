@@ -67,12 +67,21 @@ class BD_proxy
    }
    /**
     * 
+    * @return Ingredientes[]
     */
-   public function obtener_ingredientes(){}
+   public function obtener_ingredientes()
+   {
+       return(BD::obtener_ingredientes());
+   }
+   
    /**
     * 
+    * @return Recetas[]
     */
-   public function obtener_recetas(){}
+   public function obtener_recetas()
+   {
+       return(BD::obtener_recetas());
+   }
    
 //   public function obtener_ingredientes_receta($cod_rec)
 //   {
