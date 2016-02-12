@@ -6,13 +6,7 @@
     </head>
     <body>
         <?php
-//        require_once ('BD.php');
-        require_once('BD_Proxy.php');
-        require_once('recetas.php');
-        require_once('ingredientes.php');
 
-        $a = new BD_proxy();
-        echo $a->obtieneNombreReceta(1).";;;;;";
 
 
         $uri = "http://localhost/receta_soap_wdsl";
@@ -22,28 +16,43 @@
         try {
 
         $cliente = new SoapClient(null, array('location' => $url, 'uri' => $uri));
-        print_r($cliente->__getTypes());
-        print_r($cliente->__getFunctions());
-        //$cliente = new SoapClient("$uri/BD_Proxy.wsdl");
-
-        echo $cliente->obtieneNombreReceta(1); 
-        print "<br>";
+     
+        echo "Nombre de la receta 1 :<br>".$cliente->obtieneNombreReceta(1); 
+        print "<br><br>";
+        echo 'Preparacion de la receta 1 :<br>';
         echo $cliente->obtener_preparacion_receta(1);
-        print "<br>";
+        print"<br><br>";
+        echo "Presentacion de la receta 1 :<br>";
         echo $cliente->obtener_presentacion_receta(1);
-        print "<br>";
-        //print_r($cliente->obtener_array_ingredientes_receta(1));
-        $v=$cliente->obtener_array_ingredientes_receta(1);
-        print_r($v);
-//        for ($i=0;$i<5;$i++)
-//        {
-//            print $v[$i]."<br>";
-//        }
-//        
-        }catch (Exception $ex) {
+        print "<br><br>";
+        echo "Lista de ingredientes de la receta 1 (es un array de string) :<br>";
+        print_r($cliente->obtener_array_ingredientes_receta(1));
+        print "<br><br>";
+        
+        }
+        catch (Exception $ex) 
+        {
               echo $ex->getMessage();
               print($cliente->__getLastResponse());
         }
+        
+        try
+        {
+            echo "Todos los ingredientes de la BD en un Array:<br>";
+            print_r($cliente->obtener_ingredientes());
+            print "<br><br>";
+            echo "Todas las recetas en un Array:<br>";
+            print_r($cliente->obtener_recetas());
+            print "<br><br>";
+           
+            
+        }
+        catch (Exception $ex) 
+        {
+              echo $ex->getMessage();
+              print($cliente->__getLastResponse());
+        }
+        
         ?>
     </body>
 </html>
