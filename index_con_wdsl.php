@@ -23,10 +23,12 @@
 
         
         $cliente = new SoapClient("$uri/BD_Proxy.wsdl");
-        print "<br><br><br><br>";print "<br><br><br><br>";print "<br><br><br><br>";print "<br><br><br><br>";
+        print "Tipos :";
         print_r($cliente->__getTypes());
-        print "<br><br><br><br>";print "<br><br><br><br>";print "<br><br><br><br>";
+        print "<br><br>";
+        print "Funciones :";
         print_r($cliente->__getFunctions());
+        print "<br><br>";
         //print_r($cliente->__getFunctions());
 
 //        $cliente->__soapCall('obtieneNombreReceta', array('codigo' => 1));
@@ -34,17 +36,21 @@
 //       $receta= $cliente->obtieneNombreReceta(1); 
 //       echo ("receta es : " + $receta); // funciona correctamente.
 //     $cliente->__soapCall("obtieneNombreReceta",array(1));
+        print "Nombre de receta :";
         echo $cliente->obtieneNombreReceta(1); 
-        print "<br><br><br><br>";
+        print "<br><br>";
+        print "Preparacion de receta :";
         echo $cliente->obtener_preparacion_receta(1);
-        print"<br><br><br><br>";
+        print"<br><br>";
+        print "Presentacion de receta :";
         echo $cliente->obtener_presentacion_receta(1);
-        print "<br><br><br><br>";
-        
+        print "<br><br>";
+        print "Lista ingredientes de esta receta :";
         print_r($cliente->obtener_array_ingredientes_receta(1));
-        print "<br><br><br><br>";
+        print "<br><br>";
         
-        }catch (Exception $ex) {
+        }
+        catch (Exception $ex) {
               echo $ex->getMessage();
               print($cliente->__getLastResponse());
         }
@@ -53,16 +59,20 @@
         {
            // print_r($cliente->obtener_ingredientes());
            // print "<br><br><br><br>";
+            print "Todas las recetas de la BD:";
             print_r($cliente->obtener_recetas());
-             print "<br><br><br><br>";
+            print "<br><br>";
             $v=$cliente->obtener_recetas();
-            print "<br><br><br><br>";
-            print "numero de recetas :".count($v);
+            print "<br><br>";
+            print "Numero de recetas :".count($v)."<br>";
            // $v1=$v[0]->getIngredientes();
+            print "Array de ingredientes de la receta 0 :<br>";
             print_r($v[0]->ingredientes);
+            print "<br><br>";
+            print "Ingredientes de la receta 0:<br>";
             foreach($v[0]->ingredientes as $ingrediente)
             {
-                echo $ingrediente->nombre;
+                echo $ingrediente->nombre."<br>";
             }
             //print_r($v1->getNombre());
             
