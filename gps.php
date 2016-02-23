@@ -11,15 +11,52 @@
  *
  * @author pc
  */
-class Recetas {
+class Gps {
 
-    private $codigo_rec;
-    private $nombre;
-    private $preparacion;
-    private $presentacion;
-    private $tipo;
-    private $ingredientes;
+    private $GLatitud;
+    private $GLongitud;
+    private $Fecha;
+    private $Foto;
     
+    public function __construct($GLatitud, $GLongitud, $Fecha) {
+        $this->GLatitud = $GLatitud;
+        $this->GLongitud = $GLongitud;
+        $this->Fecha = $Fecha;
+    }
+
+    public function getGLatitud() {
+        return $this->GLatitud;
+    }
+
+    public function getGLongitud() {
+        return $this->GLongitud;
+    }
+
+    public function getFecha() {
+        return $this->Fecha;
+    }
+
+    public function getFoto() {
+        return $this->Foto;
+    }
+
+    public function setGLatitud($GLatitud) {
+        $this->GLatitud = $GLatitud;
+    }
+
+    public function setGLongitud($GLongitud) {
+        $this->GLongitud = $GLongitud;
+    }
+
+    public function setFecha($Fecha) {
+        $this->Fecha = $Fecha;
+    }
+
+    public function setFoto($Foto) {
+        $this->Foto = $Foto;
+    }
+
+       /* 
     function __construct($row,$ing) {
         $this->codigo_rec = $row['cod_rec'];
         $this->nombre = $row['nombre'];
@@ -76,5 +113,5 @@ class Recetas {
     function setTipo($tipo) {
         $this->tipo = $tipo;
     }
-
+*/
 }

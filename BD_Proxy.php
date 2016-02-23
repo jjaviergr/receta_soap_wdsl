@@ -11,85 +11,34 @@ require_once('BD.php');
 
 class BD_proxy
 {
-   /**
-    * 
-    * @param integer $codigo
-    * @return string
-    */
-   public function obtieneNombreReceta($codigo)
-   {      
-       //print_r(BD::obtener_nombre_receta($codigo));
-       
-       return (BD::obtener_nombre_receta($codigo));
-   }
-   /**
-    * 
-    * @param integer $cod_rec
-    * @return string
-    */
-   public function obtener_preparacion_receta($cod_rec)
-   {
-       return (BD::obtener_preparacion_receta($cod_rec));
-   }
-   /**
-    * 
-    * @param integer $cod_rec
-    * @return string
-    */
-   public function obtener_presentacion_receta($cod_rec)
-   {
-       return (BD::obtener_presentacion_receta($cod_rec));
-   }
-   
-   /**
-    * 
-    * @param integer $cod_rec
-    * @return string[] type
-    */
-   public function obtener_array_ingredientes_receta($cod_rec)
-   {
-       //$v=new Ingredientes(null);
-       $v=BD::obtener_ingredientes_receta($cod_rec);
-       $cad="";
-       $a="";
-     
-       for ($i=0;$i<count($v);$i++)
-       {
-          $cad=$cad.$v[$i]->getCantidad().";";
-          $cad=$cad.$v[$i]->getCod_ing().";";
-          $cad=$cad.$v[$i]->getCod_rec().";";
-          $cad=$cad.$v[$i]->getNombre().";";
-          $cad=$cad.$v[$i]->getUnidad();          
-          $a[$i]=$cad;
-        }
-       
-       return ($a);
-   }
-   
-//   public function obtener_ingredientes()
-//   {
-//       return(BD::obtener_ingredientes());
-//   }
-   
-   /**
-    * 
-    * @return Recetas[]
-    */
-   public function obtener_recetas()
-   {
-       return(BD::obtener_recetas());
-   }
-   
-//   public function obtener_ingredientes_receta($cod_rec)
-//   {
-//       $v=BD::obtener_ingredientes_receta($cod_rec);
-//       for (var $i=0;$i<$v.length();$i++)
-//       {
-//          $cad=$cad+$v[$i];    
-//       }
-//       return $cad;
-//   }
-   
+    /**
+     * 
+     * @param type $fecha
+     * @return double
+     */
+    public function obtener_coordenada($fecha)
+    {
+        return(BD::obtener_coordenada($fecha));
+    }
+    /**
+     * 
+     * @param type $f1
+     * @param type $f2
+     * @return Gps[]
+     */
+    public function obtener_coordenadas($f1, $f2)
+    {
+        return(BD::obtener_coordenadas($f1, $f2));
+    }
+    /**
+     * 
+     * @return Gps[]
+     */
+    public function obtener_todas_las_coordenadas()
+    {
+        return (BD::obtener_todas_las_coordenadas());
+    }        
+    
 }
 
 //$a=new BD_proxy();

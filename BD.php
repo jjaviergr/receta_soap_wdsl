@@ -7,18 +7,18 @@
  */
 
 /**
- * Description of BD
+ * 
  *
  * @author pc
  */
-require_once 'recetas.php';
-require_once 'ingredientes.php';
+require_once 'gps.php';
 
 class BD {
 
+    
     protected static function ejecutaConsulta($sql) {
         $opc = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
-        $dsn = "mysql:host=localhost;dbname=recetas";
+        $dsn = "mysql:host=localhost;dbname=gps";
         $usuario = 'dwes';
         $contrasena = 'abc123.';
         //$usuario = "root";
@@ -31,113 +31,68 @@ class BD {
         return $resultado;
     }
 
-    public static function obtener_nombre_receta($cod_rec) {
-        $sql = "SELECT  nombre FROM recetas";
-        $sql .= " WHERE cod_rec='" . $cod_rec . "'";
+    
+    public static function obtener_coordenada($fecha) {
+        $sql = "SELECT  glatitud,glongitud FROM coordenadas";
+        $sql .= " WHERE fecha='" . $fecha . "'";
         $resultado = self::ejecutaConsulta($sql);
         $nombre = null;
 
+        $cad = "";
         if (isset($resultado)) {
             $row = $resultado->fetch();
             //print_r($row);
-            $nombre = $row['nombre'];
+            $cad = $row['glatitud'] + "," + $row['glongitud'];
         }
         //print_r($nombre);
-        return $nombre;
-    }
-
-    public static function obtener_tipo_receta($cod_rec) {
-        $sql = "SELECT  tipo FROM recetas";
-        $sql .= " WHERE cod_rec='" . $cod_rec . "'";
-        $resultado = self::ejecutaConsulta($sql);
-        $nombre = null;
-
-        if (isset($resultado)) {
-            $row = $resultado->fetch();
-            //$nombre = new Recetas($row);
-            $nombre = $row['tipo'];
-        }
-        return $nombre;
-    }
-
-    public static function obtener_preparacion_receta($cod_rec) {
-        $sql = "SELECT  * FROM recetas";
-        $sql .= " WHERE cod_rec='" . $cod_rec . "'";
-        $resultado = self::ejecutaConsulta($sql);
-        $nombre = null;
-
-        if (isset($resultado)) {
-            $row = $resultado->fetch();
-            //$nombre = new Recetas($row);
-            $nombre = $row['preparacion'];
-        }
-        return $nombre;
-    }
-
-    public static function obtener_presentacion_receta($cod_rec) {
-        $sql = "SELECT  * FROM recetas";
-        $sql .= " WHERE cod_rec='" . $cod_rec . "'";
-        $resultado = self::ejecutaConsulta($sql);
-        $nombre = null;
-
-        if (isset($resultado)) {
-            $row = $resultado->fetch();
-            //$nombre = new Recetas($row);
-            $nombre = $row['presentacion'];
-        }
-        return $nombre;
-    }
-
-    public static function obtener_ingredientes_receta($cod_rec) {
-        $sql = "SELECT  * FROM ingredientes";
-        $sql .= " WHERE cod_rec='" . $cod_rec . "'";
-        $resultado = self::ejecutaConsulta($sql);
-        $nombre = array();
-//        ini_set('memory_limit', '-1');
-        $row=$resultado->fetch();
-        while ($row != null) { 
-            $nombre[] = new Ingredientes($row);
-                $row = $resultado->fetch();
-                
-            }        
-        return $nombre;
+        return $cad;
     }
 
     
-   public static function obtener_ingredientes()
-   {
-        $sql = "SELECT  * FROM ingredientes";
+    public static function obtener_coordenadas($f1, $f2) {
+        $sql = "SELECT  glatitud,glongitud FROM coordenadas";
+        $sql .= " WHERE fecha between $f1 and $f2";
         $resultado = self::ejecutaConsulta($sql);
-        $nombre = array();
-        $row=$resultado->fetch();
-        while ($row != null) { 
-            $nombre[] = new Ingredientes($row);
+      
+        /*
+          if($resultado) {
+          // Añadimos un elemento por cada producto obtenido
+          $row = $resultado->fetch();
+          while ($row != null) {
+          $productos[] = new Producto($row);
+          $row = $resultado->fetch();
+          }
+          } */
+        if (isset($resultado)) {
+            $row = $resultado->fetch();
+            //print_r($row);
+            while ($row != null) {
+                $coordenada[] = new Gps($row['glatitud'], $row['glongitud'], $row['fecha']);
                 $row = $resultado->fetch();
-                
-            }        
-        return $nombre;
-   }
-   /**
-    * 
-    * @return \Recetas
-    */
-   public static function obtener_recetas()
-   {
-       
-        $sql = "SELECT  * FROM recetas";
+            }
+            //$cad = $row['glatitud'] + "," + $row['glongitud'];
+        }
+        //print_r($nombre);
+        return $coordenada;
+    }
+    
+    
+    public static function obtener_todas_las_coordenadas()
+    {
+        $sql = "SELECT  glatitud,glongitud FROM coordenadas";
         $resultado = self::ejecutaConsulta($sql);
-        $nombre = array();
-        $row=$resultado->fetch();
-        while ($row != null) 
-        { 
-            $aux=new Recetas($row);
-            $v=self::obtener_ingredientes_receta($row['cod_rec']);
-            $aux->setIngredientes($v);
-            $nombre[] = $aux;
-            
+        
+        if (isset($resultado)) {
+            $row = $resultado->fetch();
+            //print_r($row);
+            while ($row != null) {
+                $coordenada[] = new Gps($row['glatitud'], $row['glongitud'], $row['fecha']);
                 $row = $resultado->fetch();
-                
-         }        
-        return $nombre;
-   }
+            }
+            //$cad = $row['glatitud'] + "," + $row['glongitud'];
+        }
+        //print_r($nombre);
+        return $coordenada;
+    }
+
 }
