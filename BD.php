@@ -94,5 +94,14 @@ class BD {
         //print_r($nombre);
         return $coordenada;
     }
+    
+    public static function insertar_coordenadas($c)
+    {
+        for ($i=0;$i<$c.length;$i++)
+        {
+        $sql="INSERT INTO Coordenadas (GLatitud, GLongitud, Fecha, Foto)
+            VALUES ("+$c[$i].getGLatitud()+","+$c[$i].getGLongitud()+","+$c[$i].getFoto()+")";
+        }
+    }
 
 }
