@@ -13,34 +13,54 @@ class BD_proxy
 {
     /**
      * 
-     * @param type $fecha
-     * @return double
+     * @param string $fecha
+     * @return string
      */
     public function obtener_coordenada($fecha)
     {
         return(BD::obtener_coordenada($fecha));
     }
+    
     /**
      * 
-     * @param type $f1
-     * @param type $f2
-     * @return Gps[]
+     * @param string $f1
+     * @param string $f2
+     * @return string
      */
     public function obtener_coordenadas($f1, $f2)
     {
         return(BD::obtener_coordenadas($f1, $f2));
     }
+    
     /**
      * 
-     * @return Gps[]
+     * @return string[]
      */
     public function obtener_todas_las_coordenadas()
     {
         return (BD::obtener_todas_las_coordenadas());
-    }        
+    }     
+    
+    /**
+     * 
+     * @param Gps[] $c
+     * 
+     */
+    public function insertar_coordenadas($c)
+    {
+        BD::insertar_coordenadas($c);
+    }
     
 }
 
+//$vector=  array();
 //$a=new BD_proxy();
-//print_r($a->obtener_array_ingredientes_receta(1));
+//$coordenada=new Gps();
+//$coordenada->setGLatitud(1);
+//$coordenada->setGLongitud(1);
+//$coordenada->setFecha(date("Y/m/d"));
+//$vector[0]=$coordenada;
+////print_r $coordenada;
+//BD::insertar_coordenadas($vector);
+//print_r($a->obtener_todas_las_coordenadas());
 //echo $a->obtieneNombreReceta(1);

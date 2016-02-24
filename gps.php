@@ -18,11 +18,20 @@ class Gps {
     private $Fecha;
     private $Foto;
     
-    public function __construct($GLatitud, $GLongitud, $Fecha) {
-        $this->GLatitud = $GLatitud;
-        $this->GLongitud = $GLongitud;
-        $this->Fecha = $Fecha;
-    }
+    public function Gps()
+    {}
+    
+//    public function __construct($row) {
+//        $this->GLatitud = $row['GLatitud'];
+//        $this->GLongitud = $row['GLongitud'];
+//        $this->Fecha = $row['Date'];
+//    }
+    
+//    public function __construct($GLatitud, $GLongitud, $Fecha) {
+//        $this->GLatitud = $GLatitud;
+//        $this->GLongitud = $GLongitud;
+//        $this->Fecha = $Fecha;
+//    }
 
     public function getGLatitud() {
         return $this->GLatitud;
