@@ -20,8 +20,8 @@
         $uri = "http://localhost/receta_soap_wdsl";
 
 
-////         $cliente = new SoapClient(null, array('location' => $url, 'uri' => $uri));
-//        try {
+
+        try {
 
         
         $cliente = new SoapClient("$uri/BD_Proxy.wsdl");
@@ -51,11 +51,11 @@
 //        print_r($cliente->obtener_array_ingredientes_receta(1));
 //        print "<br><br>";
 //        
-//        }
-//        catch (Exception $ex) {
-//              echo $ex->getMessage();
-//              print($cliente->__getLastResponse());
-//        }
+        }
+        catch (Exception $ex) {
+              echo $ex->getMessage();
+              print($cliente->__getLastResponse());
+        }
 //        
 //        try
 //        {
