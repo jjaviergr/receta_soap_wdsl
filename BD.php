@@ -18,10 +18,10 @@ class BD {
     protected static function ejecutaConsulta($sql) {
         $opc = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
         $dsn = "mysql:host=localhost;dbname=gps";
-        $usuario = 'dwes';
-        $contrasena = 'abc123.';
-        //$usuario = "root";
-        //$contrasena = "";
+//        $usuario = 'dwes';
+//        $contrasena = 'abc123.';
+        $usuario = "root";
+        $contrasena = "";
 
         $dwes = new PDO($dsn, $usuario, $contrasena, $opc);
         $resultado = null;
@@ -84,26 +84,26 @@ class BD {
                 $coordenada[] = new Gps($row);
                 $row = $resultado->fetch();
             }
-            //$cad = $row['glatitud'] + "," + $row['glongitud'];
-        }
-        //print_r($nombre);
+        } 
         return $coordenada;
     }
 
     public static function insertar_coordenadas($c) {
-        print "INSERTANDO ".count($c);
+
         for ($i = 0; $i < count($c); $i++) 
         {            
             $coor=$c[$i];
-            print $coor->getGLatitud().",".$coor->getGLongitud().",".$coor->getFecha()."<br>";
-            $sql = "INSERT INTO Coordenadas (GLatitud, GLongitud, Date) ";
-            $sql=$sql."VALUES (".$coor->getGLatitud().",".$coor->getGLongitud().",".$coor->getFecha().")";
-            
-//            $sql="INSERT INTO Coordenadas (GLatitud, GLongitud, Date) VALUES ('1','2','3')";
-            self::ejecutaConsulta($sql);
-            
+            $sql = "INSERT INTO coordenadas (GLatitud, GLongitud, Date) ";
+            $sql=$sql."VALUES (\"".$coor->getGLatitud()."\",\"".$coor->getGLongitud()."\",\"".$coor->getFecha()."\")";
+            self::ejecutaConsulta($sql);            
         }
-        print "$sql"."<br>";
+
+    }
+    
+    public static function borrar_todas_las_coordenadas()
+    {
+        $sql="DELETE FROM `coordenadas`" ;
+        self::ejecutaConsulta($sql);     
     }
 
 }

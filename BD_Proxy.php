@@ -47,8 +47,13 @@ class BD_proxy
      * 
      */
     public function insertar_coordenadas($c)
-    {
+    {        
         BD::insertar_coordenadas($c);
+    }
+    
+    public function borrar_coordenadas()
+    {
+       BD::borrar_todas_las_coordenadas(); 
     }
     
 }
