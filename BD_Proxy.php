@@ -11,21 +11,13 @@ require_once('BD.php');
 
 class BD_proxy
 {
-    /**
-     * 
-     * @param string $fecha
-     * @return string
-     */
-    public function obtener_coordenada($fecha)
-    {
-        return(BD::obtener_coordenada($fecha));
-    }
+    
     
     /**
      * 
      * @param string $f1
      * @param string $f2
-     * @return string
+     * @return string[][]
      */
     public function obtener_coordenadas($f1, $f2)
     {
@@ -34,7 +26,7 @@ class BD_proxy
     
     /**
      * 
-     * @return string[]
+     * @return string[][]
      */
     public function obtener_todas_las_coordenadas()
     {
@@ -43,18 +35,46 @@ class BD_proxy
     
     /**
      * 
-     * @param Gps[] $c
+     * @param string[][] $c
      * 
      */
     public function insertar_coordenadas($c)
     {        
-        BD::insertar_coordenadas($c);
+        return(BD::insertar_coordenadas($c));
     }
     
-    public function borrar_coordenadas()
+    
+   /**
+    * 
+    * @return string
+    */
+    public function borrar_todas()
     {
-       BD::borrar_todas_las_coordenadas(); 
+       return(BD::borrar_todas_las_coordenadas()); 
     }
+    
+    /**
+     * 
+     * @param string $f1
+     * @param string $f2
+     * @return string
+     */
+    public function borrar_coordenadas($f1,$f2)
+    {
+        return(BD::borrar_coordenadas($f1,$f2));
+    }
+    
+    
+//    public function  getFechaHoy()
+//    {
+//        return (Gps::getFechaHoy());
+//    }
+    
+    
+//    public function creaFecha($f)
+//    {
+//        return (Gps::creaFecha($f));
+//    }
     
 }
 

@@ -67,11 +67,15 @@
         require_once ('Aplication.php');
 
         //$cliente = null;
-        $uri = "http://localhost/receta_soap_wdsl";
+         $uri = "http://rastreriza.esy.es";
+         $url = "$uri/servicio_sin_wdsl.php";
+        
+        $cliente = new SoapClient(null, array('location' => $url, 'uri' => $uri));
 
 //        $cliente = new BD_Proxy();
         try {
-            $cliente = new SoapClient("$uri/BD_Proxy.wsdl");
+          // $cliente = new SoapClient("$uri/BD_Proxy.wsdl");
+ $cliente = new SoapClient(null, array('location' => $url, 'uri' => $uri));
 //            print_r($cliente->__getTypes());
 //            print "<br><br>";
 //            print "Funciones :<br>";
