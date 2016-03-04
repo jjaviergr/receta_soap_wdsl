@@ -75,37 +75,14 @@ class BD {
 //            print_r($row);
             while ($row != null) {
 //                $coordenada[] = new Gps($row);
-                $coordenada[] = array($row['GLatitud'], $row['GLongitud'], $row['Date']);
+                $coordenada[] = array($row['GLatitud'], $row['GLongitud'],date('d/m/Y M:H:s' ,$row['Date']));
+                //date('d/m/Y', $row['campo_fecha_ts']);
                 $row = $resultado->fetch();
             }
         }
 //        echo "HOLA";
 //        print_r($coordenada);
         return $coordenada;
-    }
-
-    /**
-     * 
-     * @param string $la
-     * @param string $lo
-     * @param string $da
-     */
-    public static function insertar($la,$lo,$da)            
-    {
-        $sql = "INSERT INTO coordenadas (GLatitud, GLongitud, Date) ";
-        $sql = $sql . "VALUES ('$la','$lo','$da')";
-        self::ejecutaConsulta($sql);
-    }
-    
-    /**
-     * 
-     * @param string[] $c
-     */
-    public static function insertar_coordenada($c) {
-        $coor=$c;
-        $sql = "INSERT INTO coordenadas (GLatitud, GLongitud, Date) ";
-        $sql = $sql . "VALUES ('$coor[0]','$coor[1]','$coor[2]')";
-        self::ejecutaConsulta($sql);
     }
 
     /**
@@ -117,7 +94,8 @@ class BD {
         for ($i = 0; $i < count($c); $i++) {
             $coor = $c[$i];
             $sql = "INSERT INTO coordenadas (GLatitud, GLongitud, Date) ";
-            $sql = $sql . "VALUES ('$coor[0]','$coor[1]','$coor[2]')";
+            $sql = $sql . "VALUES ('$coor[0]','$coor[1]',FROM_UNIXTIME('$coor[2]'))";
+            //INSERT INTO coordenadas (GLatitud, GLongitud, Date) VALUES ('9','9',FROM_UNIXTIME('12313123'))
             self::ejecutaConsulta($sql);
         }
     }

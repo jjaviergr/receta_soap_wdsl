@@ -66,6 +66,7 @@ class Gps {
         $hoy = getdate();
         //print_r($hoy);
         $cad=$hoy['mday'].'/'.$hoy['mon'].'/'.$hoy['year']." ".$hoy['hours'].":".$hoy['minutes'];
+        //$cad=getdate();
         return $cad;
     }
     
