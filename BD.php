@@ -47,11 +47,22 @@ class BD {
         return $cad;
     }
 
+//    public static function convierte_fecha($f) {
+//        echo $f;
+//        $aux = split("-", $f);
+//        $aux2 = split(" ", $aux[2]);
+//        $fecha = $aux2[0] . "-" . $aux[1] . "-" . $aux[0] . " " . $aux2[1];
+//        return($fecha);
+//    }
+
     public static function obtener_coordenadas($f1, $f2) {
-        $sql = "SELECT  GLatitud,GLongitud,Date FROM coordenadas WHERE Date between $f1 and $f2";
+        
+        $sql = "SELECT  GLatitud,GLongitud,Date FROM coordenadas WHERE Date between '".$f1."' and '".$f2."'";
+        
+        echo $sql;
         $resultado = self::ejecutaConsulta($sql);
-        echo $f1 . "|" . $f2 . $resultado;
-        print_r($resultado);
+        //echo $f1 . "|" . $f2 . $resultado;
+       // print_r($resultado);
         if (isset($resultado)) {
 //            print_r($resultado);
             $row = $resultado->fetch();
@@ -63,7 +74,14 @@ class BD {
             //$cad = $row['glatitud'] + "," + $row['glongitud'];
         }
         print_r($coordenada);
-        return $coordenada;
+        if (isset($coordenada))
+        {
+            
+            //print_r($coordenada);
+            return $coordenada;
+        
+        }
+        
     }
 
     public static function obtener_todas_las_coordenadas() {
@@ -75,7 +93,9 @@ class BD {
 //            print_r($row);
             while ($row != null) {
 //                $coordenada[] = new Gps($row);
-                $coordenada[] = array($row['GLatitud'], $row['GLongitud'],date(DateTime::W3C ,$row['Date']));
+                $coordenada[] = array($row['GLatitud'], $row['GLongitud'], $row['Date']);
+                //date(DateTime::W3C ,$row['Date'])
+                //date('Y-m-d H:i:s',strtotime($date));
                 //date('d/m/Y', $row['campo_fecha_ts']);
                 $row = $resultado->fetch();
             }
@@ -94,8 +114,14 @@ class BD {
         for ($i = 0; $i < count($c); $i++) {
             $coor = $c[$i];
             $sql = "INSERT INTO coordenadas (GLatitud, GLongitud, Date) ";
-            $sql = $sql . "VALUES ('$coor[0]','$coor[1]',FROM_UNIXTIME('$coor[2]'))";
-            //INSERT INTO coordenadas (GLatitud, GLongitud, Date) VALUES ('9','9',FROM_UNIXTIME('12313123'))
+//            $sql = $sql . "VALUES ('$coor[0]','$coor[1]',CURRENT_TIMESTAMP)";
+            //echo $coor[2].' ';
+            $aux = split("-", $coor[2]);
+            $aux2 = split(" ", $aux[2]);
+            $fecha = $aux2[0] . "-" . $aux[1] . "-" . $aux[0] . " " . $aux2[1];
+            //echo date("Y-m-d H:i:s", strtotime($fecha));
+            $sql = $sql . "VALUES ('$coor[0]','$coor[1]','" . date('Y-m-d H:i:s', strtotime($fecha)) . "')";
+            echo $sql;
             self::ejecutaConsulta($sql);
         }
     }

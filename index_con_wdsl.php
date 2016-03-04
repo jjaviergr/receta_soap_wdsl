@@ -62,7 +62,7 @@
         -->
         <!---->
         <?php
-//        require_once('BD_Proxy.php');
+        require_once('BD_Proxy.php');
 //        require_once ('gps.php');
         require_once ('Aplication.php');
 
@@ -84,16 +84,16 @@
                     $e = $_POST['opcion'];
 //                echo $e;
                     switch ($e) {
-                        case "1":Aplication::insertar_coordenada($cliente);
+                        case "1":Aplication::insertar_f_coordenada($cliente);
                             break;
-                        case "2":Aplication::mostrar_coordenadas($cliente); //Mostrar Coordenadas entre un intervalo de fechas
+                        case "2":Aplication::mostrar_f_coordenadas($cliente); //Mostrar Coordenadas entre un intervalo de fechas
                             break;
                         case "3": Aplication::mostrar_todas($cliente);
                             break;
-                        case "4":Aplication::borrar_coordenadas($cliente); //Borrar intervalo de coordenadas seleccionando por tiempo
+                        case "4":Aplication::borrar_f_coordenadas($cliente); //Borrar intervalo de coordenadas seleccionando por tiempo
                             break;
 
-                        case "5":Aplication::borrar_todas($cliente);
+                        case "5":Aplication::borrar_f_todas($cliente);
                             break;
                         default: echo "error en switch";
                     }
@@ -111,17 +111,21 @@
                 $row[2] = $_POST['fecha'];
                 
                 $c = array($row);
+//                echo "HOLA";
 //            print_r ($c);
-                $cliente->insertar_coordenadas($c);
-//                BD_proxy::insertar_coordenadas($c);
+               // $cliente->insertar_coordenadas($c);
+               BD_proxy::insertar_coordenadas($c);
             }
 
             //muestra en un intervalo
-            if (isset($_POST['f1']) && isset($_POST['f2'])) {
-                $f1 = $_POST['f1'];
-                $f2 = $_POST['f2'];
-                $cliente->obtener_coordenadas($f1, $f2);
-                //BD_proxy::obtener_coordenadas($f1,$f2);
+            if (isset($_POST['f1m']) && isset($_POST['f2m'])) {
+                $f1 = $_POST['f1m'];
+                $f2 = $_POST['f2m'];
+             
+                $v=$cliente->obtener_coordenadas($f1, $f2);
+                //$v=BD_proxy::obtener_coordenadas($f1,$f2);
+                //Aplication::imprimir_v_coordenadas($v);
+                Aplication::mostrar_intervalo($v);
             }
 
             //borra en un intervalo
