@@ -75,7 +75,7 @@ class BD {
 //            print_r($row);
             while ($row != null) {
 //                $coordenada[] = new Gps($row);
-                $coordenada[] = array($row['GLatitud'], $row['GLongitud'],date('d/m/Y H:i:s e' ,$row['Date']));
+                $coordenada[] = array($row['GLatitud'], $row['GLongitud'],date(DateTime::W3C ,$row['Date']));
                 //date('d/m/Y', $row['campo_fecha_ts']);
                 $row = $resultado->fetch();
             }

@@ -65,17 +65,18 @@ class Gps {
     public static function getFechaHoy() {
         $hoy = getdate();
         //print_r($hoy);
-        //$cad=$hoy['mday'].'/'.$hoy['mon'].'/'.$hoy['year']." ".$hoy['hours'].":".$hoy['minutes'];
-        $cad=getdate();
+        $cad=$hoy['mday'].'/'.$hoy['mon'].'/'.$hoy['year']." ".$hoy['hours'].":".$hoy['minutes'];
+        $cad=getdate()[0];
+        echo $cad;
         return $cad;
     }
     
-    public static function creaFecha($f)
-    {
-        $formato = '!d-m-Y H:i';
-        $fecha = DateTime::createFromFormat($formato,$f);
-        return $fecha;
-    }
+//    public static function creaFecha($f)
+//    {
+//        $formato = '!d-m-Y H:i';
+//        $fecha = DateTime::createFromFormat($formato,$f);
+//        return $fecha;
+//    }
 
     /*
       function __construct($row,$ing) {
