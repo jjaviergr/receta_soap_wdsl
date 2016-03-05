@@ -64,6 +64,16 @@ class BD_proxy
         return(BD::borrar_coordenadas($f1,$f2));
     }
     
+    /**
+     * 
+     * @param string $login
+     * @param string $pass
+     * @return string
+     */
+    public function autentica($login,$pass)
+    {
+        return(BD::autentica($login, $pass));
+    }
     
 //    public function  getFechaHoy()
 //    {

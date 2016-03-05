@@ -56,13 +56,13 @@ class BD {
 //    }
 
     public static function obtener_coordenadas($f1, $f2) {
-        
-        $sql = "SELECT  GLatitud,GLongitud,Date FROM coordenadas WHERE Date between '".$f1."' and '".$f2."'";
-        
-        echo $sql;
+
+        $sql = "SELECT  GLatitud,GLongitud,Date FROM coordenadas WHERE Date between '" . $f1 . "' and '" . $f2 . "'";
+
+        //echo $sql;
         $resultado = self::ejecutaConsulta($sql);
         //echo $f1 . "|" . $f2 . $resultado;
-       // print_r($resultado);
+        // print_r($resultado);
         if (isset($resultado)) {
 //            print_r($resultado);
             $row = $resultado->fetch();
@@ -74,14 +74,11 @@ class BD {
             //$cad = $row['glatitud'] + "," + $row['glongitud'];
         }
         print_r($coordenada);
-        if (isset($coordenada))
-        {
-            
+        if (isset($coordenada)) {
+
             //print_r($coordenada);
             return $coordenada;
-        
         }
-        
     }
 
     public static function obtener_todas_las_coordenadas() {
@@ -121,7 +118,7 @@ class BD {
             $fecha = $aux2[0] . "-" . $aux[1] . "-" . $aux[0] . " " . $aux2[1];
             //echo date("Y-m-d H:i:s", strtotime($fecha));
             $sql = $sql . "VALUES ('$coor[0]','$coor[1]','" . date('Y-m-d H:i:s', strtotime($fecha)) . "')";
-            echo $sql;
+            //echo $sql;
             self::ejecutaConsulta($sql);
         }
     }
@@ -132,7 +129,7 @@ class BD {
     }
 
     public static function borrar_coordenadas($f1, $f2) {
-        $sql = "DELETE FROM coordenadas where Date between $f1 and $f2";
+        $sql = "DELETE FROM coordenadas where Date between '$f1' and '$f2'";
         self::ejecutaConsulta($sql);
     }
 
@@ -147,6 +144,39 @@ class BD {
         $formato = '!d-m-Y H:i';
         $fecha = DateTime::createFromFormat($formato, $f);
         return $fecha;
+    }
+
+    public static function autentica($login, $pass) {
+//        print "param autentia $login |  $pass";
+
+        $encontrado = 0;
+
+        //$sql = "select count(*) as numero from usuarios where login like " . "'Jose'" . " AND pass like md5('" . "123456" . "')";
+        //$sql = "select * as numero from usuarios where login like '" . $login . "' AND pass like md5('" . $pass . "')";
+
+
+        try {
+            $opc = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
+            $dsn = "mysql:host=localhost;dbname=gps";
+            $usuario = "root";
+            $contrasena = "";
+
+            $dwes = new PDO($dsn, $usuario, $contrasena, $opc);
+            $dwes->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            if (!$dwes) {
+                print "<br>Fallo.Revisa conexión con BD";
+            }
+        } catch (PDOException $e) {
+            print "<br>Excepcion con la BD : $e";
+        }
+
+        $resultado = $dwes->prepare('select * from usuarios where login like :login AND pass like :passwd');
+        $resultado->execute(Array(':login' => $login, ':passwd' => md5($pass)));
+
+        $numero_filas = $resultado->rowCount();
+        //echo $numero_filas;
+        //print_r($resultado);
+        return($numero_filas );
     }
 
 }

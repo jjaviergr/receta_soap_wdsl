@@ -5,19 +5,40 @@ require_once 'BD_Proxy.php';
 class Aplication {
 
     public static function insertar_f_coordenada($cliente) {
-        $cad = "<form action='index_con_wdsl.php' method='post'>
-                    <label>Latitud</label><input type=\"text\" name='latitud'>
-                    <label>Longitud</label><input type=\"text\" name='longitud'>";
+        //print "<iframe src='insertar_f_coordenada.php'> <p>Your browser does not support iframes.</p></iframe>";
+       // header("Location: insertar_f_coordenada.php");
+        print'<div class="row">';
+        print'<div class="row"><div class="col-lg-4 col-lg-offset-4"><hr>'
+        . '</div></div>';
+        
+       
+        print "<form action='menu_coordenada.php' method='post'>";
+         
+        print '<div class="col-lg-4 col-lg-offset-4">';
+      
+        print "<label>Latitud</label><br><input type=\"text\" name='latitud'>";
+        print '</div>';
+        print '<div class="col-lg-4 col-lg-offset-4">';
+        print "<label>Longitud</label><br><input type=\"text\" name='longitud'>";
+        print '</div>';
         //<label>Fecha Actual</label>";
-        print $cad;
+        
         $hoy = getdate();
         //print_r($hoy);
         $cad = $hoy['year'] ."-".$hoy['mon'] ."-".$hoy['mday']." " . $hoy['hours'] . ":" . $hoy['minutes']. ":" . $hoy['seconds'] ;
 //        print '<input type=\'text\' value=\'' . $cliente->getFechaHoy() . '\' name=\'fecha\' >';
-         print '<input type=\'text\' value=\'' . $cad . '\' name=\'fecha\' >';
+         print '<div class="col-lg-4 col-lg-offset-4">';
+         print '<label>Fecha</label><br><input type=\'text\' value=\'' . $cad . '\' name=\'fecha\' >';
         //print '<label> ' . $cad . '</label>';
-        print '<input type=\'submit\' value=\'Guardar\' name=\'coordenada\'>';
+         print '</div>';
+         
+        
+        print '<div class="col-lg-4 col-lg-offset-4">';
+        print '<input class=\'btn btn-primary\' type=\'submit\' value=\'Guardar\' name=\'coordenada\'>';
+        print '</div>';
         print '</form>';
+        
+        print '</div>';
 
 
         //<label>Fecha</label><input type=\"datetime-local\" name='fecha' >
@@ -50,41 +71,62 @@ class Aplication {
     
     public static function mostrar_intervalo($int)
     {
+        print'<div class="row">';
+        print'<div class="row"><div class="col-lg-4 col-lg-offset-4"><hr></div></div>';
+        print '<div class="col-lg-4 col-lg-offset-4">';
         print "<label><b>Coordenadas</b></label><br>";
         self::imprimir_v_coordenadas($int);
+        print '</div>';
+        print '</div>';
     }
     
     public static function mostrar_todas() {
 
         //  $todas = $cliente->obtener_todas_las_coordenadas();
-
+        print'<div class="row">';
+        print'<div class="row"><div class="col-lg-4 col-lg-offset-4"><hr></div></div>';
+        print '<div class="col-lg-4 col-lg-offset-4">';
         $todas = BD_proxy::obtener_todas_las_coordenadas();
-        $cad = "<label><b>Todas las Coordenadas</b></label><br>";
+        print "<label><b>Todas las Coordenadas</b></label><br>";
         //print(count($todas));
         self::imprimir_v_coordenadas($todas);
+        print '</div>';
+        print '</div>';
     }
 
     public static function borrar_f_coordenadas() {
-        $cad = "<form id='imp_coordenadas_intervalo' action='index_con_wdsl.php' method='post'>
-                    <label>Fecha Inicial</label><input type='datetime-local' name='bf1'>
-                    <label>Fecha Final </label><input type='datetime-local' name='bf2'>
-                    <textarea></textarea>
-                </form>";
-        print $cad;
+        print'<div class="row">';
+        print'<div class="row"><div class="col-lg-4 col-lg-offset-4"><hr></div></div>';
+        print '<div class="col-lg-4 col-lg-offset-4">';
+        print  "<form id='imp_coordenadas_intervalo' action='menu_coordenada.php' method='post'>";
+        print             "<label>Fecha Inicial</label><input type='datetime-local' name='bf1'><br>";
+        print             "<label>Fecha Final&nbsp&nbsp </label><input type='datetime-local' name='bf2'><br>";
+        print             "<input class='btn btn-primary' type='submit' value='Borrar_Intervalo'/>";
+        print         "</form>";
+         print '</div>';
+        print '</div>';
+        
     }
 
     public static function mostrar_f_coordenadas() {
+        
+        print'<div class="row">';
+        print'<div class="row"><div class="col-lg-4 col-lg-offset-4"><hr></div></div>';
         $hoy = getdate();
         //print_r($hoy);
         $cad = $hoy['year'] ."-".$hoy['mon'] ."-".$hoy['mday']." ". $hoy['hours'] . ":" . $hoy['minutes']. ":" . $hoy['seconds'] ;
         //print $cad;
-        $cad2 = "<form id='imp_coordenadas_intervalo' action='index_con_wdsl.php' method='post'>";
-                    $cad2=$cad2."<label>Fecha Inicial</label><input type='text' name='f1m' value='". $cad ."' >";
-                    $cad2=$cad2."<label>Fecha Final </label><input type='text' name='f2m' value='" . $cad ."' >";
+        print '<div class="col-lg-4 col-lg-offset-4">';
+        print "<form id='imp_coordenadas_intervalo' action='menu_coordenada.php' method='post'>";
+                    print "<label>Fecha Inicial</label><br><input type='text' name='f1m' value='". $cad ."' ><br>";
+                    print "<label>Fecha Final </label><br><input type='text' name='f2m' value='" . $cad ."' >";
                     
-                    $cad2=$cad2."<input type='submit' value='Consultar'/>";
-                $cad2=$cad2."</form>";
-        print $cad2;
+                    print "<br><input class='btn btn-primary' type='submit' value='Consultar'/>";
+                print "</form>";
+        print '</div>';
+        print '</div>';
+        
+        
     }
 
     public static function borrar_todas($cliente) {

@@ -44,6 +44,13 @@
     <wsdl:message name="borrar_coordenadasResponse">
         <wsdl:part name="borrar_coordenadasReturn" type="xsd:string"/>
     </wsdl:message>
+    <wsdl:message name="autenticaRequest">
+        <wsdl:part name="login" type="xsd:string"/>
+        <wsdl:part name="pass" type="xsd:string"/>
+    </wsdl:message>
+    <wsdl:message name="autenticaResponse">
+        <wsdl:part name="autenticaReturn" type="xsd:string"/>
+    </wsdl:message>
     <wsdl:portType name="BD_proxyPortType">
         <wsdl:operation name="obtener_coordenadas">
             <wsdl:documentation/>
@@ -69,6 +76,11 @@
             <wsdl:documentation/>
             <wsdl:input message="tns:borrar_coordenadasRequest"/>
             <wsdl:output message="tns:borrar_coordenadasResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="autentica">
+            <wsdl:documentation/>
+            <wsdl:input message="tns:autenticaRequest"/>
+            <wsdl:output message="tns:autenticaResponse"/>
         </wsdl:operation>
     </wsdl:portType>
     <wsdl:binding name="BD_proxyBinding" type="tns:BD_proxyPortType">
@@ -111,6 +123,15 @@
         </wsdl:operation>
         <wsdl:operation name="borrar_coordenadas">
             <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://localhost/receta_soap_wdsl/servicio_con_wdsl.php?method=borrar_coordenadas" style="rpc"/>
+            <wsdl:input>
+                <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="autentica">
+            <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://localhost/receta_soap_wdsl/servicio_con_wdsl.php?method=autentica" style="rpc"/>
             <wsdl:input>
                 <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
             </wsdl:input>
