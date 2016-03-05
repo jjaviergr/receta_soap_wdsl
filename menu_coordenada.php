@@ -53,7 +53,7 @@ and open the template in the editor.
         </div>
 
         <?php
-        require_once('BD_Proxy.php');
+        //require_once('BD_Proxy.php');
 //        require_once ('gps.php');
         require_once ('Aplication.php');
 
@@ -104,8 +104,8 @@ and open the template in the editor.
                 $c = array($row);
 //                echo "HOLA";
 //            print_r ($c);
-                // $cliente->insertar_coordenadas($c);
-                BD_proxy::insertar_coordenadas($c);
+                 $cliente->insertar_coordenadas($c);
+                //BD_proxy::insertar_coordenadas($c);
             }
 
             //muestra en un intervalo
@@ -124,8 +124,8 @@ and open the template in the editor.
                 $f1 = $_POST['bf1'];
                 $f2 = $_POST['bf2'];
 
-                //$cliente->borrar_coordenadas($f1, $f2);
-                BD_proxy::borrar_coordenadas($f1, $f2);
+                $cliente->borrar_coordenadas($f1, $f2);
+                //BD_proxy::borrar_coordenadas($f1, $f2);
             }
         } catch (Exception $ex) {
             echo $ex->getMessage();

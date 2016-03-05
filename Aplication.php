@@ -1,6 +1,6 @@
 <?php
 
-require_once 'BD_Proxy.php';
+//require_once 'BD_Proxy.php';
 
 class Aplication {
 
@@ -80,13 +80,14 @@ class Aplication {
         print '</div>';
     }
     
-    public static function mostrar_todas() {
+    public static function mostrar_todas($cliente) {
 
         //  $todas = $cliente->obtener_todas_las_coordenadas();
         print'<div class="row">';
         print'<div class="row"><div class="col-lg-4 col-lg-offset-4"><hr></div></div>';
         print '<div class="col-lg-4 col-lg-offset-4">';
-        $todas = BD_proxy::obtener_todas_las_coordenadas();
+        //$todas = BD_proxy::obtener_todas_las_coordenadas();
+        $todas=$cliente->obtener_todas_las_coordenadas();
         print "<label><b>Todas las Coordenadas</b></label><br>";
         //print(count($todas));
         self::imprimir_v_coordenadas($todas);

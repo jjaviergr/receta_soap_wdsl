@@ -66,18 +66,18 @@
 
 
         <?php
-        require_once 'BD_Proxy.php';
+        //require_once 'BD_Proxy.php';
         //print_r($_POST);
 
         if ((isset($_POST['login'])) && (isset($_POST['pass']))) {
 
             $uri = "http://localhost/receta_soap_wdsl";
             $cliente = new SoapClient("$uri/BD_Proxy.wsdl");
-            //$autentica =$cliente->autentica($_POST['login'], $_POST['pass']);
+            $autentica =$cliente->autentica($_POST['login'], $_POST['pass']);
+print $autentica;
+            //$autentica = BD_proxy::autentica($_POST['login'], $_POST['pass']);
 
-            $autentica = BD_proxy::autentica($_POST['login'], $_POST['pass']);
-
-            if ($autentica === 1) {
+            if ($autentica === '1') {
 //           $cad = "<h3>Gestor de Coordenadas GPS</h3>
 //            <fieldset>
 //                <legend>Escoge una opción</legend>
