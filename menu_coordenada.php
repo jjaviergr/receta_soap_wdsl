@@ -93,7 +93,7 @@ and open the template in the editor.
 
             //inserta una coodenada
             if (isset($_POST['coordenada'])) {
-//            print "hoal";
+//            print "hola";
 //            print_r($_POST);
 //            if (isset($_POST['latitud']) && (isset($_POST['longitud']) && (isset($_POST['fecha'])))) {
                 $row = array();
