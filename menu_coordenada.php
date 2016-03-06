@@ -104,7 +104,7 @@ and open the template in the editor.
                 $c = array($row);
 //                echo "HOLA";
 //            print_r ($c);
-                 $cliente->insertar_coordenadas($c);
+                $cliente->insertar_coordenadas($c);
                 //BD_proxy::insertar_coordenadas($c);
             }
 
@@ -133,8 +133,26 @@ and open the template in the editor.
         }
 
         if (isset($_POST['salir'])) { {
-            header("Location: index_con_wdsl.php");    
+                header("Location: index_con_wdsl.php");
             }
+        }
+
+        if (isset($_POST['actualiza'])) 
+        {
+            if (isset($_POST['uclave'])) {
+                if (isset($_POST['ulatitud'])) {
+                    if (isset($_POST['ulongitud'])) {
+                        if (isset($_POST['ufecha'])) {
+                            $cliente->actualiza_coordenada($_POST['uclave'], $_POST['ulatitud'], $_POST['ulongitud'], $_POST['ufecha']);
+                        }
+                        else print "No has escrito ninguna fecha<br>";
+                    }else print "No has escrito la longitud<br>";
+                }else print "No has escrito la latitud<br>";
+            }else print "Error de la aplicación.<br>";
+        }
+
+        if (isset($_POST['elimina'])) {
+            $cliente->elimina_coordenada($_POST['uclave']);
         }
         ?>
     </body>

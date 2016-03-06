@@ -68,7 +68,7 @@ class BD {
             $row = $resultado->fetch();
             //print_r($row);
             while ($row != null) {
-                $coordenada[] = array($row['GLatitud'], $row['GLongitud'], $row['Date']);
+                $coordenada[] = array($row['id'],$row['GLatitud'], $row['GLongitud'], $row['Date']);
                 $row = $resultado->fetch();
             }
             //$cad = $row['glatitud'] + "," + $row['glongitud'];
@@ -90,7 +90,7 @@ class BD {
 //            print_r($row);
             while ($row != null) {
 //                $coordenada[] = new Gps($row);
-                $coordenada[] = array($row['GLatitud'], $row['GLongitud'], $row['Date']);
+                $coordenada[] = array($row['id'],$row['GLatitud'], $row['GLongitud'], $row['Date']);
                 //date(DateTime::W3C ,$row['Date'])
                 //date('Y-m-d H:i:s',strtotime($date));
                 //date('d/m/Y', $row['campo_fecha_ts']);
@@ -177,6 +177,19 @@ class BD {
         //echo $numero_filas;
         //print_r($resultado);
         return($numero_filas );
+    }
+    
+    public static function actualiza_coordenada($uclave, $ulatitud, $ulongitud, $ufecha)
+    {
+        //UPDATE `coordenadas` SET `GLatitud`='1',`GLongitud`='2' WHERE Date LIKE '2016-03-05 22:58:47.0'
+        $sql="UPDATE `coordenadas` SET `GLatitud`='$ulatitud',`GLongitud`='$ulongitud',`Date`='$ufecha' WHERE id LIKE '$uclave'";
+        self::ejecutaConsulta($sql);
+    }
+    
+    public static function elimina_coordenada($uclave)
+    {
+         $sql="DELETE FROM `coordenadas` WHERE id='$uclave'";
+        self::ejecutaConsulta($sql);
     }
 
 }

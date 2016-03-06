@@ -51,6 +51,21 @@
     <wsdl:message name="autenticaResponse">
         <wsdl:part name="autenticaReturn" type="xsd:string"/>
     </wsdl:message>
+    <wsdl:message name="actualiza_coordenadaRequest">
+        <wsdl:part name="uclave" type="xsd:string"/>
+        <wsdl:part name="ulatitud" type="xsd:string"/>
+        <wsdl:part name="ulongitud" type="xsd:string"/>
+        <wsdl:part name="ufecha" type="xsd:string"/>
+    </wsdl:message>
+    <wsdl:message name="actualiza_coordenadaResponse">
+        <wsdl:part name="actualiza_coordenadaReturn" type="xsd:string"/>
+    </wsdl:message>
+    <wsdl:message name="elimina_coordenadaRequest">
+        <wsdl:part name="uclave" type="xsd:string"/>
+    </wsdl:message>
+    <wsdl:message name="elimina_coordenadaResponse">
+        <wsdl:part name="elimina_coordenadaReturn" type="xsd:string"/>
+    </wsdl:message>
     <wsdl:portType name="BD_proxyPortType">
         <wsdl:operation name="obtener_coordenadas">
             <wsdl:documentation/>
@@ -81,6 +96,16 @@
             <wsdl:documentation/>
             <wsdl:input message="tns:autenticaRequest"/>
             <wsdl:output message="tns:autenticaResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="actualiza_coordenada">
+            <wsdl:documentation/>
+            <wsdl:input message="tns:actualiza_coordenadaRequest"/>
+            <wsdl:output message="tns:actualiza_coordenadaResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="elimina_coordenada">
+            <wsdl:documentation/>
+            <wsdl:input message="tns:elimina_coordenadaRequest"/>
+            <wsdl:output message="tns:elimina_coordenadaResponse"/>
         </wsdl:operation>
     </wsdl:portType>
     <wsdl:binding name="BD_proxyBinding" type="tns:BD_proxyPortType">
@@ -132,6 +157,24 @@
         </wsdl:operation>
         <wsdl:operation name="autentica">
             <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://localhost/receta_soap_wdsl/servicio_con_wdsl.php?method=autentica" style="rpc"/>
+            <wsdl:input>
+                <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="actualiza_coordenada">
+            <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://localhost/receta_soap_wdsl/servicio_con_wdsl.php?method=actualiza_coordenada" style="rpc"/>
+            <wsdl:input>
+                <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="elimina_coordenada">
+            <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://localhost/receta_soap_wdsl/servicio_con_wdsl.php?method=elimina_coordenada" style="rpc"/>
             <wsdl:input>
                 <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
             </wsdl:input>

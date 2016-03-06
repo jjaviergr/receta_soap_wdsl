@@ -75,27 +75,27 @@ class BD_proxy
         return(BD::autentica($login, $pass));
     }
     
-//    public function  getFechaHoy()
-//    {
-//        return (Gps::getFechaHoy());
-//    }
+    /**
+     * 
+     * @param string $uclave
+     * @param string $ulatitud
+     * @param string $ulongitud
+     * @param string $ufecha
+     * @return string
+     */
+    public function actualiza_coordenada($uclave, $ulatitud, $ulongitud, $ufecha)
+    {
+        return(BD::actualiza_coordenada($uclave, $ulatitud, $ulongitud, $ufecha));
+    }
     
-    
-//    public function creaFecha($f)
-//    {
-//        return (Gps::creaFecha($f));
-//    }
+    /**
+     * 
+     * @param string $uclave
+     * @return string
+     */
+    public function elimina_coordenada($uclave)
+    {
+        return(BD::elimina_coordenada($uclave));
+    }
     
 }
-
-//$vector=  array();
-//$a=new BD_proxy();
-//$coordenada=new Gps();
-//$coordenada->setGLatitud(1);
-//$coordenada->setGLongitud(1);
-//$coordenada->setFecha(date("Y/m/d"));
-//$vector[0]=$coordenada;
-////print_r $coordenada;
-//BD::insertar_coordenadas($vector);
-//print_r($a->obtener_todas_las_coordenadas());
-//echo $a->obtieneNombreReceta(1);

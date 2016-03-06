@@ -53,19 +53,27 @@ class Aplication {
         $cad="";
         if (isset($todas[0])) {
             for ($i = 0; $i < count($todas); $i++) {
-                for ($j = 0; $j < count($todas[$i]); $j = $j + 3) {
-                    $tupla = $todas[$i];
-                    if (count($tupla) > 0) {
-                        $cad = $cad . "Latitud :" . $tupla[$j] . " ";
-                        $cad = $cad . "Longitud:" . $tupla[$j + 1] . " ";
-                        $cad = $cad . "Fecha :" . $tupla[$j + 2] . " <br>";
-                    }
+//                for ($j = 0; $j < count($todas[$i]); $j = $j + 3) {
+                $tupla = $todas[$i];
+                if (count($tupla) > 0) {
+                    print "<div class='row'>";
+                    print "<div class='col-lg-12 col-lg-offset-0'>";
+                    print "<form action='menu_coordenada.php' method='post'>";
+                    print "<small>Latitud <input type='text' value='" . $tupla[1] . "' name='ulatitud'/>  ";
+                    print "Longitud<input type='text' value='" . $tupla[2] . "' name='ulongitud'/> ";
+                    print "Fecha&nbsp&nbsp<input type='text' value='" . $tupla[3] . "' name='ufecha'/> ";
+                    print "<input type='hidden' name='uclave' value='" . $tupla[0] . "'/>";
+                    print "<input class='btn btn-info btn-xs' type='submit' name='actualiza' value='Actualizar'/>";
+                    print "<input class='btn btn-danger btn-xs' type='submit' name='elimina' value='Eliminar'/></small>";
+                    print '</form>';
+                    print "</div>";
+                    print "</div>";
                 }
+//                }
             }
+        } else {
+            $cad = $cad . "<br>Sin coordenadas";
         }
-        else
-            
-            $cad=$cad. "<br>Sin coordenadas";
         echo $cad;
     }
     
@@ -84,8 +92,8 @@ class Aplication {
 
         //  $todas = $cliente->obtener_todas_las_coordenadas();
         print'<div class="row">';
-        print'<div class="row"><div class="col-lg-4 col-lg-offset-4"><hr></div></div>';
-        print '<div class="col-lg-4 col-lg-offset-4">';
+        print'<div class="row"><div class="col-lg-6 col-lg-offset-4"><hr></div></div>';
+        print '<div class="col-lg-6 col-lg-offset-4">';
         //$todas = BD_proxy::obtener_todas_las_coordenadas();
         $todas=$cliente->obtener_todas_las_coordenadas();
         print "<label><b>Todas las Coordenadas</b></label><br>";
