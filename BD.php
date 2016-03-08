@@ -18,10 +18,10 @@ class BD {
     protected static function ejecutaConsulta($sql) {
         $opc = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
         $dsn = "mysql:host=localhost;dbname=gps";
-//        $usuario = 'dwes';
-//        $contrasena = 'abc123.';
-        $usuario = "root";
-        $contrasena = "";
+        $usuario = 'dwes';
+        $contrasena = 'abc123.';
+ //       $usuario = "root";
+ //       $contrasena = "";
 
         $dwes = new PDO($dsn, $usuario, $contrasena, $opc);
         $resultado = null;
@@ -157,10 +157,13 @@ class BD {
 
         try {
             $opc = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
-            $dsn = "mysql:host=localhost;dbname=gps";
-            $usuario = "root";
-            $contrasena = "";
-
+            //$dsn = "mysql:host=localhost;dbname=gps";
+            //$usuario = "root";
+            //$contrasena = "";
+ $dsn = "mysql:host=localhost;dbname=gps";
+        $usuario = 'dwes';
+        $contrasena = 'abc123.';
+        
             $dwes = new PDO($dsn, $usuario, $contrasena, $opc);
             $dwes->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             if (!$dwes) {
